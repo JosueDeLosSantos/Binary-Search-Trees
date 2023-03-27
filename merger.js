@@ -34,9 +34,9 @@ function fixEquivalent(arr1, arr2) {
     }
   }
 
-  if (arr2.length == 0 && arr1.length == 0) return arr3;
+  if (arr2.length == 0 && arr1.length == 0) return noDups(arr3);
 }
 
-export function noDups(arr) {
+function noDups(arr) {
   return arr.filter((item, index) => arr.indexOf(item) === index);
 }

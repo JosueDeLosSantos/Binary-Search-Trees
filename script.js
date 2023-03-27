@@ -2,8 +2,7 @@ import * as merger from "./merger.js";
 
 const listArr = [120, 55, 3, 6, 11, 85, 97, 45, 19, 2, 1, 8, 9, 11];
 
-const listArr1 = merger.mergeArr(listArr);
-const listArr2 = merger.noDups(listArr1);
+const Arr = merger.mergeArr(listArr);
 
 function Node(data, left = null, right = null) {
   return { data, left, right };
@@ -26,6 +25,41 @@ function sortedArrayToBST(arr, start, end) {
   return node;
 }
 
-const sampleArr = sortedArrayToBST(listArr2, 0, listArr2.length - 1);
+const sampleArr = sortedArrayToBST(Arr, 0, Arr.length - 1);
 
 console.log(sampleArr);
+
+// accepts a value and returns the node with the given value.
+function find(leaf, tree) {
+  let answer = null;
+  if (tree.data == leaf) {
+    answer = { data: tree.data, left: tree.left, right: tree.right };
+    return answer;
+  } else {
+    if (tree.left != null) {
+      const left = find(leaf, tree.left);
+      if (left) {
+        answer = left;
+        return answer;
+      } else {
+        answer = null;
+      }
+    }
+
+    if (tree.right != null) {
+      const right = find(leaf, tree.right);
+      if (right) {
+        answer = right;
+        return answer;
+      } else {
+        answer = null;
+      }
+    }
+
+    if (answer == null) {
+      return false;
+    }
+  }
+}
+
+console.log(find(1, sampleArr));
