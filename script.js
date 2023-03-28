@@ -4,6 +4,19 @@ const listArr = [120, 55, 3, 6, 11, 85, 97, 45, 19, 2, 1, 8, 9, 11];
 
 const Arr = merger.mergeArr(listArr);
 
+const prettyPrint = (node, prefix = "", isLeft = true) => {
+  if (node === null) {
+    return;
+  }
+  if (node.right !== null) {
+    prettyPrint(node.right, `${prefix}${isLeft ? "│   " : "    "}`, false);
+  }
+  console.log(`${prefix}${isLeft ? "└── " : "┌── "}${node.data}`);
+  if (node.left !== null) {
+    prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
+  }
+};
+
 function Node(data, left = null, right = null) {
   return { data, left, right };
 }
@@ -27,39 +40,14 @@ function sortedArrayToBST(arr, start, end) {
 
 const sampleArr = sortedArrayToBST(Arr, 0, Arr.length - 1);
 
-console.log(sampleArr);
+prettyPrint(sampleArr);
 
 // accepts a value and returns the node with the given value.
-function find(leaf, tree) {
-  let answer = null;
-  if (tree.data == leaf) {
-    answer = { data: tree.data, left: tree.left, right: tree.right };
-    return answer;
-  } else {
-    if (tree.left != null) {
-      const left = find(leaf, tree.left);
-      if (left) {
-        answer = left;
-        return answer;
-      } else {
-        answer = null;
-      }
-    }
+console.log(merger.find(1, sampleArr));
 
-    if (tree.right != null) {
-      const right = find(leaf, tree.right);
-      if (right) {
-        answer = right;
-        return answer;
-      } else {
-        answer = null;
-      }
-    }
+// accepts a value to insert
+console.log(merger.insert(10, sampleArr));
+console.log(merger.insert(121, sampleArr));
+console.log(merger.insert(119, sampleArr));
 
-    if (answer == null) {
-      return false;
-    }
-  }
-}
-
-console.log(find(1, sampleArr));
+prettyPrint(sampleArr);
