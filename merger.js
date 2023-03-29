@@ -92,3 +92,19 @@ export function insert(v, tree) {
     }
   }
 }
+
+export function Dleaf(v, tree) {
+  if (v == tree.data && tree.left == null && tree.right == null) {
+    tree = null;
+  }
+
+  if (v == tree.data && tree.left != null && tree.right == null) {
+    // tree = tree.left;
+    tree = tree.left;
+  }
+
+  if (v == tree.data && tree.left == null && tree.right != null) {
+    // tree = tree.right;
+    tree = tree.right;
+  }
+}

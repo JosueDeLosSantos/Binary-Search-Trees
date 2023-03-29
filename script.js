@@ -1,6 +1,7 @@
 import * as merger from "./merger.js";
 
-const listArr = [120, 55, 3, 6, 11, 85, 97, 45, 19, 2, 1, 8, 9, 11];
+// const listArr = [120, 55, 3, 6, 11, 85, 97, 45, 19, 2, 1, 8, 9, 11];
+const listArr = [1];
 
 const Arr = merger.mergeArr(listArr);
 
@@ -46,8 +47,29 @@ prettyPrint(sampleArr);
 console.log(merger.find(1, sampleArr));
 
 // accepts a value to insert
-console.log(merger.insert(10, sampleArr));
+/* console.log(merger.insert(10, sampleArr));
 console.log(merger.insert(121, sampleArr));
-console.log(merger.insert(119, sampleArr));
+console.log(merger.insert(119, sampleArr)); */
 
 prettyPrint(sampleArr);
+
+function Dleaf(v, tree) {
+  if (v == tree.data) {
+    if (tree.left == null && tree.right == null) return true;
+  }
+
+  if (v != tree.data && tree.left != null && tree.right == null) {
+    let left = Dleaf(v, tree.left);
+  }
+
+  if (v != tree.data && tree.left == null && tree.right != null) {
+    let right = Dleaf(v, tree.right);
+  }
+}
+
+console.log(sampleArr);
+// console.log(merger.Dleaf(2, sampleArr));
+
+Dleaf(1, sampleArr);
+
+console.log(sampleArr);
