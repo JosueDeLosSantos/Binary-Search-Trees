@@ -1,7 +1,7 @@
 import * as merger from "./merger.js";
 
-// const listArr = [120, 55, 3, 6, 11, 85, 97, 45, 19, 2, 1, 8, 9, 11];
-const listArr = [1];
+const listArr = [120, 55, 3, 6, 11, 85, 97, 45, 19, 2, 1, 8, 9, 11];
+// const listArr = [1];
 
 const Arr = merger.mergeArr(listArr);
 
@@ -53,23 +53,21 @@ console.log(merger.insert(119, sampleArr)); */
 
 prettyPrint(sampleArr);
 
-function Dleaf(v, tree) {
-  if (v == tree.data) {
-    if (tree.left == null && tree.right == null) return true;
-  }
-
-  if (v != tree.data && tree.left != null && tree.right == null) {
-    let left = Dleaf(v, tree.left);
-  }
-
-  if (v != tree.data && tree.left == null && tree.right != null) {
-    let right = Dleaf(v, tree.right);
-  }
-}
-
 console.log(sampleArr);
-// console.log(merger.Dleaf(2, sampleArr));
 
-Dleaf(1, sampleArr);
+//merger.Dleaf(1, sampleArr);
 
-console.log(sampleArr);
+const sampleObject = {
+  house: "big",
+  car: { small: "red", medium: "blue", big: "black" },
+  country: "Dominican Republic",
+};
+
+const father = {
+  name: "josue",
+  stuff: sampleObject,
+};
+
+console.log(father.propertyIsEnumerable("car"));
+
+console.log(merger.find(55, sampleArr));

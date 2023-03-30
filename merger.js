@@ -44,7 +44,7 @@ function noDups(arr) {
 export function find(leaf, tree) {
   let answer = null;
   if (tree.data == leaf) {
-    answer = { data: tree.data, left: tree.left, right: tree.right };
+    answer = tree;
     return answer;
   } else {
     if (tree.left != null) {
@@ -94,17 +94,20 @@ export function insert(v, tree) {
 }
 
 export function Dleaf(v, tree) {
-  if (v == tree.data && tree.left == null && tree.right == null) {
-    tree = null;
+  const answer = null;
+  if (v == tree.data) {
+    if (tree.left == null && tree.right == null) return answer;
+
+    if (tree.left != null && tree.right != null);
   }
 
-  if (v == tree.data && tree.left != null && tree.right == null) {
-    // tree = tree.left;
-    tree = tree.left;
+  if (v != tree.data && tree.left != null) {
+    let left = Dleaf(v, tree.left);
+    if (left.data == null) tree.left = null;
   }
 
-  if (v == tree.data && tree.left == null && tree.right != null) {
-    // tree = tree.right;
-    tree = tree.right;
+  if (v != tree.data && tree.right != null) {
+    let right = Dleaf(v, tree.right);
+    if (right.data == null) tree.right = null;
   }
 }
