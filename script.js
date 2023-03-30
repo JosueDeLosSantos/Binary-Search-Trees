@@ -1,7 +1,10 @@
 import * as merger from "./merger.js";
 
-const listArr = [120, 55, 3, 6, 11, 85, 97, 45, 19, 2, 1, 8, 9, 11];
-// const listArr = [1];
+const listArr = [
+  98, 55, 3, 6, 11, 85, 97, 19, 2, 1, 8, 4, 9, 11, 13, 18, 22, 41, 20, 5, 17,
+  16, 15, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
+];
+// const listArr = [1, 2, 3];
 
 const Arr = merger.mergeArr(listArr);
 
@@ -53,21 +56,15 @@ console.log(merger.insert(119, sampleArr)); */
 
 prettyPrint(sampleArr);
 
-console.log(sampleArr);
-
 //merger.Dleaf(1, sampleArr);
 
-const sampleObject = {
-  house: "big",
-  car: { small: "red", medium: "blue", big: "black" },
-  country: "Dominican Republic",
-};
+console.log(merger.find(300, sampleArr));
 
-const father = {
-  name: "josue",
-  stuff: sampleObject,
-};
+console.log(merger.parent(3, sampleArr));
+console.log(merger.find(3, sampleArr));
 
-console.log(father.propertyIsEnumerable("car"));
+merger.Dleaf(3, sampleArr);
 
-console.log(merger.find(55, sampleArr));
+prettyPrint(sampleArr);
+
+console.log(sampleArr);

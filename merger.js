@@ -93,21 +93,92 @@ export function insert(v, tree) {
   }
 }
 
+export function parent(leaf, tree) {
+  let answer = null;
+  if (tree.data == leaf) {
+    answer = tree;
+    return answer;
+  } else {
+    if (tree.left != null) {
+      if (tree.left.data == leaf) return tree;
+      const left = parent(leaf, tree.left);
+      if (left) {
+        answer = left;
+        return answer;
+      } else {
+        answer = null;
+      }
+    }
+
+    if (tree.right != null) {
+      if (tree.right.data == leaf) return tree;
+      const right = parent(leaf, tree.right);
+      if (right) {
+        answer = right;
+        return answer;
+      } else {
+        answer = null;
+      }
+    }
+
+    if (answer == null) {
+      return false;
+    }
+  }
+}
+
+function lastLeft(tree) {
+  let answer = null;
+  if (tree.left == answer) {
+    answer = tree;
+    return answer;
+  } else {
+    answer = lastLeft(tree.left);
+    return answer;
+  }
+}
+
 export function Dleaf(v, tree) {
-  const answer = null;
-  if (v == tree.data) {
-    if (tree.left == null && tree.right == null) return answer;
+  const father = parent(v, tree);
+  const child = find(v, tree);
 
-    if (tree.left != null && tree.right != null);
-  }
+  if (father == child) {
+    if (father.left == null && father.right == null) tree.data = null;
 
-  if (v != tree.data && tree.left != null) {
-    let left = Dleaf(v, tree.left);
-    if (left.data == null) tree.left = null;
-  }
+    if (father.left != null && father.right == null) {
+      tree.data = tree.left.data;
+      tree.left = tree.left.left;
+    }
 
-  if (v != tree.data && tree.right != null) {
-    let right = Dleaf(v, tree.right);
-    if (right.data == null) tree.right = null;
+    if (father.left == null && father.right != null) {
+      tree.data = tree.right.data;
+      tree.right = tree.right.right;
+    }
+
+    if (father.left != null && father.right != null) {
+      tree.data = tree.left.data;
+      tree.left = tree.left.left;
+    }
+  } else {
+    if (child.right == null && child.left == null) {
+      if (father.right.data == v) {
+        father.right = null;
+      } else if (father.left.data == v) {
+        father.left = null;
+      }
+      // if (father.left.data == v) father.left = null;
+    }
+
+    if (child.right != null && child.left == null) {
+      child.data = child.right.data;
+      child.right = null;
+    }
+
+    if (child.right != null && child.left != null) {
+      let newData = lastLeft(child.right);
+      let newDataFather = parent(newData.data, child.right);
+      child.data = newData.data;
+      newDataFather.left = null;
+    }
   }
 }
