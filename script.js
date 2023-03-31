@@ -60,10 +60,18 @@ prettyPrint(sampleArr);
 
 console.log(merger.find(300, sampleArr));
 
-console.log(merger.parent(3, sampleArr));
-console.log(merger.find(3, sampleArr));
+console.log(merger.parent(13, sampleArr));
+console.log(merger.find(13, sampleArr));
 
-merger.Dleaf(3, sampleArr);
+merger.Dleaf(9, sampleArr);
+merger.Dleaf(11, sampleArr);
+merger.Dleaf(13, sampleArr);
+merger.Dleaf(15, sampleArr);
+merger.Dleaf(16, sampleArr);
+merger.Dleaf(17, sampleArr);
+merger.Dleaf(18, sampleArr);
+//merger.Dleaf(19, sampleArr);
+//merger.Dleaf(4, sampleArr);
 
 prettyPrint(sampleArr);
 

@@ -138,6 +138,17 @@ function lastLeft(tree) {
   }
 }
 
+function lastRight(tree) {
+  let answer = null;
+  if (tree.right == answer) {
+    answer = tree;
+    return answer;
+  } else {
+    answer = lastRight(tree.right);
+    return answer;
+  }
+}
+
 export function Dleaf(v, tree) {
   const father = parent(v, tree);
   const child = find(v, tree);
@@ -163,22 +174,53 @@ export function Dleaf(v, tree) {
     if (child.right == null && child.left == null) {
       if (father.right.data == v) {
         father.right = null;
+        return;
       } else if (father.left.data == v) {
         father.left = null;
+        return;
       }
       // if (father.left.data == v) father.left = null;
     }
 
-    if (child.right != null && child.left == null) {
-      child.data = child.right.data;
-      child.right = null;
-    }
-
     if (child.right != null && child.left != null) {
       let newData = lastLeft(child.right);
-      let newDataFather = parent(newData.data, child.right);
+      if (child.right.right != null) {
+        let newDataFather = parent(newData.data, child.right);
+        // new Condition "newData == newDataFather"
+        if (newData == newDataFather) {
+          child.data = newData.data;
+          child.right = child.right.right;
+          return;
+        } else if (newData != newDataFather) {
+          child.data = newDataFather.left.data;
+          if (newDataFather.left.right == null) {
+            newDataFather.left = null;
+          } else if (newDataFather.left.right != null) {
+            newDataFather.left = newDataFather.left.right;
+          }
+          return;
+        }
+      }
       child.data = newData.data;
-      newDataFather.left = null;
+      child.right = newData.right;
+      return;
+    }
+
+    if (child.right != null && child.left == null) {
+      let newData = lastLeft(child.right);
+      if (child.right.right != null) {
+        let newDataFather = parent(newData.data, child.right);
+        child.data = newData.data;
+        child.right = newDataFather.right;
+        return;
+      }
+      child.data = child.right.data;
+      child.right = child.right.right;
+      return;
+    }
+
+    if (child.right == null && child.left != null) {
+      //Create function with lastRight()
     }
   }
 }
