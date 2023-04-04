@@ -179,14 +179,13 @@ export function Dleaf(v, tree) {
         father.left = null;
         return;
       }
-      // if (father.left.data == v) father.left = null;
     }
 
     if (child.right != null && child.left != null) {
       let newData = lastLeft(child.right);
       if (child.right.right != null) {
         let newDataFather = parent(newData.data, child.right);
-        // new Condition "newData == newDataFather"
+
         if (newData == newDataFather) {
           child.data = newData.data;
           child.right = child.right.right;
@@ -221,6 +220,22 @@ export function Dleaf(v, tree) {
 
     if (child.right == null && child.left != null) {
       //Create function with lastRight()
+      if (child.left.right != null) {
+        let newData = lastRight(child.left);
+        let newDataFather = parent(newData.data, child.left);
+        if (newData.left != null) {
+          child.data = newData.data;
+          newDataFather.right = newData.left;
+          return;
+        } else {
+          child.data = newData.data;
+          newDataFather.right = newData.right;
+        }
+      } else {
+        child.data = child.left.data;
+        child.left = child.left.left;
+        return;
+      }
     }
   }
 }
