@@ -37,6 +37,7 @@ function fixEquivalent(arr1, arr2) {
   if (arr2.length == 0 && arr1.length == 0) return noDups(arr3);
 }
 
+// remove duplicates
 function noDups(arr) {
   return arr.filter((item, index) => arr.indexOf(item) === index);
 }
@@ -183,26 +184,17 @@ export function Dleaf(v, tree) {
 
     if (child.right != null && child.left != null) {
       let newData = lastLeft(child.right);
-      if (child.right.right != null) {
-        let newDataFather = parent(newData.data, child.right);
+      let newDataFather = parent(newData.data, child.right);
 
-        if (newData == newDataFather) {
-          child.data = newData.data;
-          child.right = child.right.right;
-          return;
-        } else if (newData != newDataFather) {
-          child.data = newDataFather.left.data;
-          if (newDataFather.left.right == null) {
-            newDataFather.left = null;
-          } else if (newDataFather.left.right != null) {
-            newDataFather.left = newDataFather.left.right;
-          }
-          return;
-        }
+      if (newData == newDataFather) {
+        child.data = newData.data;
+        child.right = newData.right;
+        return;
+      } else if (newData != newDataFather) {
+        child.data = newData.data; //
+        newDataFather.left = newDataFather.left.right; //
+        return;
       }
-      child.data = newData.data;
-      child.right = newData.right;
-      return;
     }
 
     if (child.right != null && child.left == null) {

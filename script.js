@@ -56,12 +56,12 @@ console.log(merger.insert(119, sampleArr)); */
 
 prettyPrint(sampleArr);
 
-//merger.Dleaf(1, sampleArr);
-
 console.log(merger.find(300, sampleArr));
 
 console.log(merger.parent(13, sampleArr));
 console.log(merger.find(13, sampleArr));
+
+merger.Dleaf(2, sampleArr);
 
 prettyPrint(sampleArr);
 
