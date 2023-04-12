@@ -131,7 +131,6 @@ export function parent(leaf, tree) {
 function lastLeft(tree) {
   let answer = null;
   if (tree.left == answer) {
-    //if (tree.left == null) return null;
     answer = tree;
     return answer;
   } else {
@@ -143,7 +142,6 @@ function lastLeft(tree) {
 function lastRight(tree) {
   let answer = null;
   if (tree.right == answer) {
-    // if (tree.right == null) return null;
     answer = tree;
     return answer;
   } else {
@@ -220,4 +218,17 @@ export function Dleaf(v, tree) {
       return;
     }
   }
+}
+
+export function levelOrder(root) {
+  let queue = [];
+  let result = [];
+  queue.push(root);
+  while (queue.length > 0) {
+    result.push(queue[0].data);
+    if (queue[0].left != null) queue.push(queue[0].left);
+    if (queue[0].right != null) queue.push(queue[0].right);
+    queue.shift();
+  }
+  return result;
 }
