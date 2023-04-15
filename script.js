@@ -64,3 +64,9 @@ console.log(merger.levelOrder(sampleArr));
 
 // preorder depth-first order
 console.log(merger.preorder(sampleArr));
+
+// inorder depth-first order
+console.log(merger.inorder(sampleArr));
+
+// postorder depth-first order
+console.log(merger.postorder(sampleArr));

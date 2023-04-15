@@ -42,6 +42,7 @@ function noDups(arr) {
   return arr.filter((item, index) => arr.indexOf(item) === index);
 }
 
+// accepts a value and returns the node with the given value.
 export function find(leaf, tree) {
   let answer = null;
   if (tree.data == leaf) {
@@ -74,6 +75,7 @@ export function find(leaf, tree) {
   }
 }
 
+// accepts a value to insert
 export function insert(v, tree) {
   if (v == tree.data) {
     return;
@@ -94,6 +96,7 @@ export function insert(v, tree) {
   }
 }
 
+// accepts a value and returns the parent of the node with the given value.
 export function parent(leaf, tree) {
   let answer = null;
   if (tree.data == leaf) {
@@ -221,6 +224,7 @@ export function Dleaf(v, tree) {
   }
 }
 
+//returns the tree nodes in level order
 export function levelOrder(root) {
   let queue = [];
   let result = [];
@@ -234,6 +238,7 @@ export function levelOrder(root) {
   return result;
 }
 
+// returns the nodes in preorder depth-first order
 export function preorder(root) {
   let result = [];
 
@@ -247,5 +252,39 @@ export function preorder(root) {
     }
   }
   fPreOrder(root);
+  return result;
+}
+
+// returns the nodes in inorder depth-first order
+export function inorder(root) {
+  let result = [];
+
+  function fInorder(root) {
+    if (root == null) {
+      return;
+    } else {
+      fInorder(root.left);
+      result.push(root.data);
+      fInorder(root.right);
+    }
+  }
+  fInorder(root);
+  return result;
+}
+
+// returns the nodes in postorder depth-first order
+export function postorder(root) {
+  let result = [];
+
+  function fPostorder(root) {
+    if (root == null) {
+      return;
+    } else {
+      fPostorder(root.left);
+      fPostorder(root.right);
+      result.push(root.data);
+    }
+  }
+  fPostorder(root);
   return result;
 }
