@@ -291,50 +291,58 @@ export function postorder(root) {
 
 // accepts a node and returns its height
 export function height(v, BST) {
-  // returns a BST starting from the given node
-  const start = find(v, BST);
+  const root = find(BST.data, BST);
   // converts the tree into array
-  const arr = levelOrder(start);
+  const arr = levelOrder(root);
   // calculate the square root of the array's length
   const rawSqrt = Math.sqrt(arr.length);
   // rounds up and returns the smaller integer greater than or equal to a given number
-  const heightNum = Math.ceil(rawSqrt);
-  return heightNum;
+  const heightNum = Math.ceil(rawSqrt) + 1;
+  const depthNum = depth(v, BST);
+
+  if (heightNum == depthNum) {
+    return depthNum;
+  } else {
+    const optionalR = heightNum - depthNum;
+    if (optionalR >= 1) {
+      return optionalR;
+    } else {
+      return 1;
+    }
+  }
 }
 
+// accepts a node and returns its depth
 export function depth(v, BST) {
   let levels = 0;
+
   function findDepth(leaf, tree) {
-    levels += 1;
     let answer = null;
     if (tree.data == leaf) {
-      answer = tree;
+      levels += 1;
       return levels;
     } else {
       if (tree.left != null) {
         const left = findDepth(leaf, tree.left);
         if (left) {
-          answer = left;
+          levels += 1;
           return levels;
-        } else {
-          answer = null;
         }
       }
 
       if (tree.right != null) {
         const right = findDepth(leaf, tree.right);
         if (right) {
-          answer = right;
+          levels += 1;
           return levels;
-        } else {
-          answer = null;
         }
       }
 
       if (answer == null) {
-        return false;
+        return levels;
       }
     }
   }
+
   return findDepth(v, BST);
 }
