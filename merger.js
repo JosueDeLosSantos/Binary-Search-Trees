@@ -150,6 +150,7 @@ function lastRight(tree) {
   }
 }
 
+// accepts a value to delete
 export function Dleaf(v, tree) {
   const father = parent(v, tree);
   const child = find(v, tree);
@@ -230,5 +231,21 @@ export function levelOrder(root) {
     if (queue[0].right != null) queue.push(queue[0].right);
     queue.shift();
   }
+  return result;
+}
+
+export function preorder(root) {
+  let result = [];
+
+  function fPreOrder(root) {
+    if (root == null) {
+      return;
+    } else {
+      result.push(root.data);
+      fPreOrder(root.left);
+      fPreOrder(root.right);
+    }
+  }
+  fPreOrder(root);
   return result;
 }

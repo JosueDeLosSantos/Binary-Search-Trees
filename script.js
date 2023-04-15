@@ -4,7 +4,7 @@ const listArr = [
   98, 55, 3, 6, 11, 85, 97, 19, 2, 1, 8, 4, 9, 11, 13, 18, 22, 41, 20, 5, 17,
   16, 15, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
 ];
-/* const listArr = [1, 2, 3]; */
+//const listArr = [1, 2, 3];
 
 const Arr = merger.mergeArr(listArr);
 
@@ -61,3 +61,6 @@ prettyPrint(sampleArr);
 
 //returns the tree nodes in level order
 console.log(merger.levelOrder(sampleArr));
+
+// preorder depth-first order
+console.log(merger.preorder(sampleArr));
