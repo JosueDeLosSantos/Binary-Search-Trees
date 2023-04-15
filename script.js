@@ -71,4 +71,8 @@ console.log(merger.inorder(sampleArr));
 // postorder depth-first order
 console.log(merger.postorder(sampleArr));
 
-console.log(merger.height(20, sampleArr));
+// accepts a node and returns its height
+console.log(merger.height(2, sampleArr));
+
+// accepts a node and returns its depth
+console.log(merger.depth(2, sampleArr));

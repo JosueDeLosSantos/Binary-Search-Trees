@@ -301,3 +301,40 @@ export function height(v, BST) {
   const heightNum = Math.ceil(rawSqrt);
   return heightNum;
 }
+
+export function depth(v, BST) {
+  let levels = 0;
+  function findDepth(leaf, tree) {
+    levels += 1;
+    let answer = null;
+    if (tree.data == leaf) {
+      answer = tree;
+      return levels;
+    } else {
+      if (tree.left != null) {
+        const left = findDepth(leaf, tree.left);
+        if (left) {
+          answer = left;
+          return levels;
+        } else {
+          answer = null;
+        }
+      }
+
+      if (tree.right != null) {
+        const right = findDepth(leaf, tree.right);
+        if (right) {
+          answer = right;
+          return levels;
+        } else {
+          answer = null;
+        }
+      }
+
+      if (answer == null) {
+        return false;
+      }
+    }
+  }
+  return findDepth(v, BST);
+}
