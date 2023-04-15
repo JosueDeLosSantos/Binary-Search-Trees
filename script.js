@@ -1,10 +1,10 @@
 import * as merger from "./merger.js";
 
 const listArr = [
-  98, 55, 3, 6, 11, 85, 97, 19, 2, 1, 8, 4, 9, 11, 13, 18, 22, 41, 20, 5, 17,
+  7, 98, 55, 3, 6, 11, 85, 97, 19, 2, 1, 8, 4, 9, 11, 13, 18, 22, 41, 20, 5, 17,
   16, 15, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
 ];
-//const listArr = [1, 2, 3];
+//const listArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 const Arr = merger.mergeArr(listArr);
 
@@ -50,12 +50,12 @@ prettyPrint(sampleArr);
 console.log(merger.find(1, sampleArr));
 
 // accepts a value to insert
-console.log(merger.insert(10, sampleArr));
+//console.log(merger.insert(10, sampleArr));
 
 prettyPrint(sampleArr);
 
 // accepts a value to delete
-merger.Dleaf(10, sampleArr);
+//merger.Dleaf(10, sampleArr);
 
 prettyPrint(sampleArr);
 
@@ -70,3 +70,5 @@ console.log(merger.inorder(sampleArr));
 
 // postorder depth-first order
 console.log(merger.postorder(sampleArr));
+
+console.log(merger.height(20, sampleArr));
