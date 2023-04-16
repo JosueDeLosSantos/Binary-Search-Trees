@@ -8,7 +8,7 @@ const listArr = [
 
 const Arr = merger.mergeArr(listArr);
 
-const prettyPrint = (node, prefix = "", isLeft = true) => {
+export const prettyPrint = (node, prefix = "", isLeft = true) => {
   if (node === null) {
     return;
   }
@@ -21,28 +21,7 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
   }
 };
 
-function Node(data, left = null, right = null) {
-  return { data, left, right };
-}
-
-export function sortedArrayToBST(arr, start, end) {
-  /* Base Case */
-  if (start > end) {
-    return null;
-  }
-  /* Get the middle element and make it root */
-  const mid = parseInt((start + end) / 2);
-  const node = Node(arr[mid]);
-  /* Recursively construct the left subtree and make it
-     left child of root */
-  node.left = sortedArrayToBST(arr, start, mid - 1);
-  /* Recursively construct the right subtree and make it
-     right child of root */
-  node.right = sortedArrayToBST(arr, mid + 1, end);
-  return node;
-}
-
-const sampleArr = sortedArrayToBST(Arr, 0, Arr.length - 1);
+const sampleArr = merger.sortedArrayToBST(Arr, 0, Arr.length - 1);
 
 prettyPrint(sampleArr);
 
@@ -50,8 +29,9 @@ prettyPrint(sampleArr);
 console.log(merger.find(1, sampleArr));
 
 // accepts a value to insert
-//console.log(merger.insert(23, sampleArr));
-//console.log(merger.insert(24, sampleArr));
+console.log(merger.insert(23, sampleArr));
+console.log(merger.insert(24, sampleArr));
+console.log(merger.insert(25, sampleArr));
 
 prettyPrint(sampleArr);
 
@@ -83,4 +63,8 @@ console.log(merger.height(20, sampleArr));
 console.log(merger.depth(20, sampleArr));
 
 //  checks if the tree is balanced
-console.log(merger.isBalanced(sampleArr)); //3
+console.log(merger.isBalanced(sampleArr));
+
+// rebalances an unbalanced tree
+console.log(merger.rebalance(sampleArr));
+prettyPrint(merger.rebalance(sampleArr));

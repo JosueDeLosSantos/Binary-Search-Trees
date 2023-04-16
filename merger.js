@@ -1,3 +1,4 @@
+import * as main from "./script.js";
 // Sort array
 export function mergeArr(array) {
   if (array.length <= 1) return array;
@@ -40,6 +41,28 @@ function fixEquivalent(arr1, arr2) {
 // remove duplicates
 function noDups(arr) {
   return arr.filter((item, index) => arr.indexOf(item) === index);
+}
+
+// Node factory
+function Node(data, left = null, right = null) {
+  return { data, left, right };
+}
+
+export function sortedArrayToBST(arr, start, end) {
+  /* Base Case */
+  if (start > end) {
+    return null;
+  }
+  /* Get the middle element and make it root */
+  const mid = parseInt((start + end) / 2);
+  const node = Node(arr[mid]);
+  /* Recursively construct the left subtree and make it
+     left child of root */
+  node.left = sortedArrayToBST(arr, start, mid - 1);
+  /* Recursively construct the right subtree and make it
+     right child of root */
+  node.right = sortedArrayToBST(arr, mid + 1, end);
+  return node;
 }
 
 // accepts a value and returns the node with the given value.
@@ -356,4 +379,14 @@ export function isBalanced(BST) {
   if (rawSqrt == 2) rawSqrt++;
   const rightDeepestD = Math.ceil(rawSqrt);
   return rightDeepestD === deepestDistance ? true : false;
+}
+
+export function rebalance(BTS) {
+  // checks if the tree is balanced
+  if (isBalanced(BTS)) return "No need for rebalance";
+  // if not it converts the tree into an array
+  const mainArr = inorder(BTS);
+  const newBTS = sortedArrayToBST(mainArr, 0, mainArr.length - 1);
+
+  return newBTS;
 }
