@@ -50,12 +50,12 @@ prettyPrint(sampleArr);
 console.log(merger.find(1, sampleArr));
 
 // accepts a value to insert
-console.log(merger.insert(10, sampleArr));
+//console.log(merger.insert(10, sampleArr));
 
 prettyPrint(sampleArr);
 
 // accepts a value to delete
-merger.Dleaf(10, sampleArr);
+//merger.Dleaf(10, sampleArr);
 
 prettyPrint(sampleArr);
 
@@ -76,7 +76,10 @@ console.log(merger.postorder(sampleArr));
 // 1, 3, 2, 5, 7, 6, 4, 9 ...
 
 // accepts a node and returns its height
-console.log(merger.height(15, sampleArr)); // 4
+console.log(merger.height(35, sampleArr));
 
 // accepts a node and returns its depth
-console.log(merger.depth(15, sampleArr)); // 3
+console.log(merger.depth(35, sampleArr));
+
+// checks if the tree is
+//console.log(merger.isBalanced(sampleArr)); //3

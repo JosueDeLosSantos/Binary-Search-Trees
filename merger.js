@@ -291,25 +291,22 @@ export function postorder(root) {
 
 // accepts a node and returns its height
 export function height(v, BST) {
+  //finds the root note
   const root = find(BST.data, BST);
   // converts the tree into array
   const arr = levelOrder(root);
   // calculate the square root of the array's length
-  const rawSqrt = Math.sqrt(arr.length);
+  let rawSqrt = Math.sqrt(arr.length);
+  if (Number.isInteger(rawSqrt)) rawSqrt++;
   // rounds up and returns the smaller integer greater than or equal to a given number
-  const heightNum = Math.ceil(rawSqrt) + 1;
-  const depthNum = depth(v, BST);
+  const heightNum = Math.ceil(rawSqrt);
+  let depthNum = depth(v, BST);
+  if (depthNum == 1) return heightNum;
+  if (depthNum > 1) depthNum--;
 
-  if (heightNum == depthNum) {
-    return depthNum;
-  } else {
-    const optionalR = heightNum - depthNum;
-    if (optionalR >= 1) {
-      return optionalR;
-    } else {
-      return 1;
-    }
-  }
+  let result = heightNum - depthNum;
+
+  return result;
 }
 
 // accepts a node and returns its depth
@@ -345,4 +342,9 @@ export function depth(v, BST) {
   }
 
   return findDepth(v, BST);
+}
+
+export function isBalanced(BST) {
+  const arr = height(BST.data, BST);
+  return arr;
 }
