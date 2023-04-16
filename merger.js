@@ -297,13 +297,13 @@ export function height(v, BST) {
   const arr = levelOrder(root);
   // calculate the square root of the array's length
   let rawSqrt = Math.sqrt(arr.length);
-  if (Number.isInteger(rawSqrt)) rawSqrt++;
+  if (rawSqrt == 2) rawSqrt++;
   // rounds up and returns the smaller integer greater than or equal to a given number
   const heightNum = Math.ceil(rawSqrt);
   let depthNum = depth(v, BST);
   if (depthNum == 1) return heightNum;
-  if (depthNum > 1) depthNum--;
 
+  if (depthNum > 1) depthNum--;
   let result = heightNum - depthNum;
 
   return result;
@@ -345,6 +345,15 @@ export function depth(v, BST) {
 }
 
 export function isBalanced(BST) {
-  const arr = height(BST.data, BST);
-  return arr;
+  // build an array with the BST and place all elements in level order
+  const mainArr = levelOrder(BST);
+  // the deepest element will always be the last element
+  const deepestElement = mainArr[mainArr.length - 1];
+  // calculate the depth of the deepest element
+  const deepestDistance = depth(deepestElement, BST);
+  // calculate the deepest distance when the tree is balanced.
+  let rawSqrt = Math.sqrt(mainArr.length);
+  if (rawSqrt == 2) rawSqrt++;
+  const rightDeepestD = Math.ceil(rawSqrt);
+  return rightDeepestD === deepestDistance ? true : false;
 }

@@ -4,7 +4,7 @@ const listArr = [
   7, 98, 55, 3, 6, 11, 85, 97, 19, 2, 1, 8, 4, 9, 11, 13, 18, 22, 41, 20, 5, 17,
   16, 15, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
 ];
-//const listArr = [1, 2, 3, 4];
+//const listArr = [1, 2];
 
 const Arr = merger.mergeArr(listArr);
 
@@ -25,7 +25,7 @@ function Node(data, left = null, right = null) {
   return { data, left, right };
 }
 
-function sortedArrayToBST(arr, start, end) {
+export function sortedArrayToBST(arr, start, end) {
   /* Base Case */
   if (start > end) {
     return null;
@@ -50,7 +50,8 @@ prettyPrint(sampleArr);
 console.log(merger.find(1, sampleArr));
 
 // accepts a value to insert
-//console.log(merger.insert(10, sampleArr));
+//console.log(merger.insert(23, sampleArr));
+//console.log(merger.insert(24, sampleArr));
 
 prettyPrint(sampleArr);
 
@@ -76,10 +77,10 @@ console.log(merger.postorder(sampleArr));
 // 1, 3, 2, 5, 7, 6, 4, 9 ...
 
 // accepts a node and returns its height
-console.log(merger.height(35, sampleArr));
+console.log(merger.height(20, sampleArr));
 
 // accepts a node and returns its depth
-console.log(merger.depth(35, sampleArr));
+console.log(merger.depth(20, sampleArr));
 
-// checks if the tree is
-//console.log(merger.isBalanced(sampleArr)); //3
+//  checks if the tree is balanced
+console.log(merger.isBalanced(sampleArr)); //3
