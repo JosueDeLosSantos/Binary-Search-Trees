@@ -1,4 +1,3 @@
-import * as main from "./script.js";
 // Sort array
 export function mergeArr(array) {
   if (array.length <= 1) return array;
@@ -48,7 +47,7 @@ function Node(data, left = null, right = null) {
   return { data, left, right };
 }
 
-export function sortedArrayToBST(arr, start, end) {
+export function sortedArrayToBST(arr, start = 0, end = arr.length - 1) {
   /* Base Case */
   if (start > end) {
     return null;
@@ -367,26 +366,24 @@ export function depth(v, BST) {
   return findDepth(v, BST);
 }
 
-export function isBalanced(BST) {
-  // build an array with the BST and place all elements in level order
-  const mainArr = levelOrder(BST);
-  // the deepest element will always be the last element
-  const deepestElement = mainArr[mainArr.length - 1];
-  // calculate the depth of the deepest element
-  const deepestDistance = depth(deepestElement, BST);
-  // calculate the deepest distance when the tree is balanced.
-  let rawSqrt = Math.sqrt(mainArr.length);
-  if (rawSqrt == 2) rawSqrt++;
-  const rightDeepestD = Math.ceil(rawSqrt);
-  return rightDeepestD === deepestDistance ? true : false;
+export function isBalanced(root) {
+  /* place the elements in level order to check the last level.*/
+  const mainArr = levelOrder(root);
+  /* if the tree is not balanced, the grand parent of the last element 
+  of the array will contain at least one leave which content is null*/
+  const child = find(mainArr[mainArr.length - 1], root);
+  const father = parent(child.data, root);
+  const grandParent = parent(father.data, root);
+  if (grandParent.right != null && grandParent.left != null) return true;
+  return false;
 }
 
 export function rebalance(BTS) {
   // checks if the tree is balanced
-  if (isBalanced(BTS)) return "No need for rebalance";
+  if (isBalanced(BTS)) return BST;
   // if not it converts the tree into an array
   const mainArr = inorder(BTS);
-  const newBTS = sortedArrayToBST(mainArr, 0, mainArr.length - 1);
+  const newBTS = sortedArrayToBST(mainArr);
 
   return newBTS;
 }

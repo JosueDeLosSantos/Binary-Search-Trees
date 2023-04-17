@@ -1,12 +1,29 @@
 import * as merger from "./merger.js";
 
-const listArr = [
-  7, 98, 55, 3, 6, 11, 85, 97, 19, 2, 1, 8, 4, 9, 11, 13, 18, 22, 41, 20, 5, 17,
-  16, 15, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
-];
-//const listArr = [1, 2];
+/* 1. Create a binary search tree from an array of random numbers. You can 
+create a function that returns an array of random numbers every time you 
+call it, if you wish. */
 
-const Arr = merger.mergeArr(listArr);
+function random100() {
+  let result = [];
+  for (let i = 0; i <= 99; i += 1) {
+    // Returns a random integer from 0 to 100 on every cycle
+    let ramNum = Math.floor(Math.random() * 100);
+    if (ramNum != 0) {
+      result.push(ramNum);
+    } else {
+      ramNum++;
+      result.push(ramNum);
+    }
+  }
+  return result;
+}
+
+const randomArr = random100();
+
+const Arr = merger.mergeArr(randomArr);
+
+console.log(Arr);
 
 export const prettyPrint = (node, prefix = "", isLeft = true) => {
   if (node === null) {
@@ -25,46 +42,49 @@ const sampleArr = merger.sortedArrayToBST(Arr, 0, Arr.length - 1);
 
 prettyPrint(sampleArr);
 
-// accepts a value and returns the node with the given value.
-console.log(merger.find(1, sampleArr));
+/* 2. Confirm that the tree is balanced by calling isBalanced */
+console.log(merger.isBalanced(sampleArr)); // true
 
-// accepts a value to insert
-console.log(merger.insert(23, sampleArr));
-console.log(merger.insert(24, sampleArr));
-console.log(merger.insert(25, sampleArr));
+/* 3. Print out all elements in level, pre, post, and in order */
 
-prettyPrint(sampleArr);
-
-// accepts a value to delete
-//merger.Dleaf(10, sampleArr);
-
-prettyPrint(sampleArr);
-
-//returns the tree nodes in level order
+// level
 console.log(merger.levelOrder(sampleArr));
-// 20, 8, 37, 4, 15, 33, 41 ...
 
-// preorder depth-first order
+// pre
 console.log(merger.preorder(sampleArr));
-// 20, 8, 4, 2, 1, 3, 6, 5 ...
 
-// inorder depth-first order
-console.log(merger.inorder(sampleArr));
-// 1, 2, 3, 4, 5, 6, 7, 8, 9 ...
-
-// postorder depth-first order
+// post
 console.log(merger.postorder(sampleArr));
-// 1, 3, 2, 5, 7, 6, 4, 9 ...
 
-// accepts a node and returns its height
-console.log(merger.height(20, sampleArr));
+// in order
+console.log(merger.inorder(sampleArr));
 
-// accepts a node and returns its depth
-console.log(merger.depth(20, sampleArr));
+/* 4. Unbalance the tree by adding several numbers > 100 */
 
-//  checks if the tree is balanced
-console.log(merger.isBalanced(sampleArr));
+merger.insert(101, sampleArr);
+merger.insert(102, sampleArr);
+merger.insert(103, sampleArr);
+merger.insert(104, sampleArr);
 
-// rebalances an unbalanced tree
+/* 5. Confirm that the tree is unbalanced by calling isBalanced */
+console.log(merger.isBalanced(sampleArr)); // false
+
+/* 6. Balance the tree by calling rebalance */
 console.log(merger.rebalance(sampleArr));
-prettyPrint(merger.rebalance(sampleArr));
+
+/* 7. Confirm that the tree is balanced by calling isBalanced */
+console.log(merger.isBalanced(merger.rebalance(sampleArr))); // true
+
+/* 8. Print out all elements in level, pre, post, and in order */
+
+// level
+console.log(merger.levelOrder(merger.rebalance(sampleArr)));
+
+// pre
+console.log(merger.preorder(merger.rebalance(sampleArr)));
+
+// post
+console.log(merger.postorder(merger.rebalance(sampleArr)));
+
+// in order
+console.log(merger.inorder(merger.rebalance(sampleArr)));
