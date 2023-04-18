@@ -247,7 +247,8 @@ export function Dleaf(v, tree) {
 }
 
 //returns the tree nodes in level order
-export function levelOrder(root) {
+// loop option
+/* export function levelOrder(root) {
   let queue = [];
   let result = [];
   queue.push(root);
@@ -258,6 +259,27 @@ export function levelOrder(root) {
     queue.shift();
   }
   return result;
+} */
+
+//returns the tree nodes in level order
+//recursive option
+export function levelOrder(root) {
+  let queue = [];
+  let result = [];
+  queue.push(root);
+  LOresponse(queue[0]);
+  return result;
+  function LOresponse(q) {
+    result.push(q.data);
+    if (q.left != null) queue.push(q.left);
+    if (q.right != null) queue.push(q.right);
+    queue.shift();
+    if (queue.length < 1) {
+      return result;
+    } else {
+      LOresponse(queue[0]);
+    }
+  }
 }
 
 // returns the nodes in preorder depth-first order
